@@ -1,18 +1,28 @@
 package projarch.assignment.application.dto.response;
 
-public class JogoDefaultDTO {
+public class JogoMesaDTO implements JogoDTO {
+    private String tipoMesa;
+    private int numeroPecas;
     private int codigo;
     private String nome;
     private double valorBase;
-    private String tipo;
     private double valorAluguel;
 
-    public JogoDefaultDTO(int codigo, String nome, double valorBase, String tipo, double valorAluguel) {
+    public JogoMesaDTO(int codigo, String nome, double valorBase, String tipoMesa, int numeroPecas, double valorAluguel) {
         this.codigo = codigo;
         this.nome = nome;
         this.valorBase = valorBase;
-        this.tipo = tipo;
+        this.tipoMesa = tipoMesa;
+        this.numeroPecas = numeroPecas;
         this.valorAluguel = valorAluguel;
+    }
+
+    public String getTipoMesa() {
+        return tipoMesa;
+    }
+
+    public int getNumeroPecas() {
+        return numeroPecas;
     }
 
     public int getCodigo() {
@@ -25,10 +35,6 @@ public class JogoDefaultDTO {
 
     public double getValorBase() {
         return valorBase;
-    }
-
-    public String getTipo() {
-        return tipo;
     }
 
     public double getValorAluguel() {
