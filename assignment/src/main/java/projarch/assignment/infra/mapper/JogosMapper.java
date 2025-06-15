@@ -2,12 +2,12 @@ package projarch.assignment.infra.mapper;
 
 import java.util.List;
 
-import projarch.assignment.application.dto.response.JogoDTO;
-import projarch.assignment.application.dto.response.JogoEletronicoDTO;
-import projarch.assignment.application.dto.response.JogoMesaDTO;
-import projarch.assignment.domain.models.JogoEletronicoModel;
-import projarch.assignment.domain.models.JogoMesaModel;
-import projarch.assignment.domain.models.JogoModel;
+import projarch.assignment.application.dto.jogo.JogoDTO;
+import projarch.assignment.application.dto.jogo.JogoEletronicoDTO;
+import projarch.assignment.application.dto.jogo.JogoMesaDTO;
+import projarch.assignment.domain.models.jogo.JogoEletronicoModel;
+import projarch.assignment.domain.models.jogo.JogoMesaModel;
+import projarch.assignment.domain.models.jogo.JogoModel;
 
 public class JogosMapper {
 

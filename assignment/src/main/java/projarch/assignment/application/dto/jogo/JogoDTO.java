@@ -1,4 +1,4 @@
-package projarch.assignment.application.dto.response;
+package projarch.assignment.application.dto.jogo;
 
 public interface JogoDTO {
     int getCodigo();

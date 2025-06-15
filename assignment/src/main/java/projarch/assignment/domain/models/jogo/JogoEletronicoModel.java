@@ -1,4 +1,4 @@
-package projarch.assignment.domain.models;
+package projarch.assignment.domain.models.jogo;
 
 import projarch.assignment.domain.enums.EnumTipoEletronico;
 

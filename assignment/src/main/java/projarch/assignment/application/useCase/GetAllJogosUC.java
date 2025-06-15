@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import projarch.assignment.application.dto.response.JogoDTO;
+import projarch.assignment.application.dto.jogo.JogoDTO;
 import projarch.assignment.domain.services.JogosService;
 import projarch.assignment.infra.mapper.JogosMapper;
 

@@ -1,4 +1,4 @@
-package projarch.assignment.domain.models;
+package projarch.assignment.domain.models.jogo;
 
 public abstract class JogoModel {
     private int codigo;
