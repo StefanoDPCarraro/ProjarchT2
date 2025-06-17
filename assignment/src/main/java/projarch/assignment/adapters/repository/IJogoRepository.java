@@ -1,4 +1,4 @@
-package projarch.assignment.domain.repository;
+package projarch.assignment.adapters.repository;
 
 import java.util.List;
 

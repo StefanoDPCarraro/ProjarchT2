@@ -1,7 +1,10 @@
-package projarch.assignment.infra.mapper;
+package projarch.assignment.infra.mapperImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import projarch.assignment.adapters.IMapper.IJogosMapper;
 import projarch.assignment.application.dto.response.JogoDTO;
 import projarch.assignment.application.dto.response.JogoEletronicoDTO;
 import projarch.assignment.application.dto.response.JogoMesaDTO;
@@ -12,9 +15,10 @@ import projarch.assignment.infra.database.entity.Jogo;
 import projarch.assignment.infra.database.entity.JogoEletronico;
 import projarch.assignment.infra.database.entity.JogoMesa;
 
-public class JogosMapper {
+@Component
+public class JogosMapper implements IJogosMapper {
 
-    public static JogoDTO modelToDTO(JogoModel jogoModel) {
+    public JogoDTO modelToDTO(JogoModel jogoModel) {
         if (jogoModel instanceof JogoEletronicoModel) {
             return new JogoEletronicoDTO(
                     jogoModel.getCodigo(),
@@ -36,13 +40,13 @@ public class JogosMapper {
         return null;
     }
 
-    public static List<JogoDTO> listModelToDTO(List<JogoModel> jogosModel) {
+    public List<JogoDTO> listModelToDTO(List<JogoModel> jogosModel) {
         return jogosModel.stream()
-                .map(JogosMapper::modelToDTO)
+                .map(this::modelToDTO)
                 .toList();
     }
 
-    public static JogoModel entityToModel(Jogo jogo) {
+    public JogoModel entityToModel(Jogo jogo) {
         if (jogo instanceof JogoEletronico) {
             return new JogoEletronicoModel(
                     jogo.getCodigo(),
@@ -62,16 +66,16 @@ public class JogosMapper {
         return null;
     }
 
-    public static List<JogoModel> listEntityToModel(List<Jogo> jogos) {
+    public List<JogoModel> listEntityToModel(List<Jogo> jogos) {
         return jogos.stream()
-                .map(JogosMapper::entityToModel)
+                .map(this::entityToModel)
                 .toList();
     }
 
     // Not being used yet
     // Uncomment when needed
 
-    // public static Jogo modelToEntity(JogoModel jogoModel) {
+    // public Jogo modelToEntity(JogoModel jogoModel) {
     //     if (jogoModel instanceof JogoEletronicoModel) {
     //         return new JogoEletronico(
     //                 ((JogoEletronicoModel) jogoModel).getTipoEletronico(),
@@ -91,9 +95,9 @@ public class JogosMapper {
     //     return null;
     // }
 
-    // public static List<Jogo> listModelToEntity(List<JogoModel> jogosModel) {
+    // public List<Jogo> listModelToEntity(List<JogoModel> jogosModel) {
     //     return jogosModel.stream()
-    //             .map(JogosMapper::modelToEntity)
+    //             .map(this::modelToEntity)
     //             .toList();
     // }
 

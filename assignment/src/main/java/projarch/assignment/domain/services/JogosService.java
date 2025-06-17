@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import projarch.assignment.adapters.repository.IJogoRepository;
 import projarch.assignment.domain.models.JogoModel;
-import projarch.assignment.domain.repository.IJogoRepository;
 
 @Service
 public class JogosService {

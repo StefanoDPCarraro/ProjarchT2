@@ -1,4 +1,4 @@
-package projarch.assignment.infra.controller;
+package projarch.assignment.adapters.controller;
 
 import java.util.List;
 
