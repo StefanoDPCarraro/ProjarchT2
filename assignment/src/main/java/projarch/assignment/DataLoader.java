@@ -5,16 +5,20 @@ import org.springframework.stereotype.Component;
 
 import projarch.assignment.domain.enums.EnumTipoEletronico;
 import projarch.assignment.domain.enums.EnumTipoMesa;
+import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
 import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;
+import projarch.assignment.infra.database.entity.Aluguel;
 import projarch.assignment.infra.database.entity.JogoEletronico;
 import projarch.assignment.infra.database.entity.JogoMesa;
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private final IJogoJpaRepository jogoJpaRepository;
+    private final IAluguelJpaRepository aluguelJpaRepository;
 
-    public DataLoader(IJogoJpaRepository repository) {
-        this.jogoJpaRepository = repository;
+    public DataLoader(IJogoJpaRepository jogoRepository, IAluguelJpaRepository aluguelJpaRepository) {
+        this.jogoJpaRepository = jogoRepository;
+        this.aluguelJpaRepository = aluguelJpaRepository;
     }
 
     @Override
@@ -56,7 +60,29 @@ public class DataLoader implements CommandLineRunner {
         je3.setValorBase(45);
         jogoJpaRepository.save(je3);
 
-        System.out.println("Dados iniciais carregados com sucesso!");
+        System.out.println("Dados de jogos iniciais carregados com sucesso!");
+
+        aluguelJpaRepository.deleteAll();
+
+        Aluguel aluguel1 = new Aluguel();
+        aluguel1.setDataInicial(null);
+        aluguel1.setPeriodo(1);
+        aluguel1.setJogo(je1);
+        aluguelJpaRepository.save(aluguel1);
+
+        Aluguel aluguel2 = new Aluguel();
+        aluguel2.setDataInicial(null);
+        aluguel2.setPeriodo(2);
+        aluguel2.setJogo(je2);
+        aluguelJpaRepository.save(aluguel2);
+
+        Aluguel aluguel3 = new Aluguel();
+        aluguel3.setDataInicial(null);
+        aluguel3.setPeriodo(3);
+        aluguel3.setJogo(je3);
+        aluguelJpaRepository.save(aluguel3);
+
+        System.out.println("Dados de ALUGUEIS iniciais carregados com sucesso!");
     }
 
 }
