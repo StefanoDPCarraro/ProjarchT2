@@ -1,4 +1,4 @@
-package projarch.assignment.adapters.controller;
+/*package projarch.assignment.adapters.controller;
 
 import java.util.List;
 
@@ -24,3 +24,4 @@ public class JogoController {
         return getAllJogosUC.execute();
     }
 }
+*/

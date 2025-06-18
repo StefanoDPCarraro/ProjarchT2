@@ -18,7 +18,7 @@ public class AluguelController {
         this.getAllAlugueisUC = getAllAlugueisUC;
     }
 
-    @GetMapping("/listajogos")
+    @GetMapping("/listaalugueis")
     public List<AluguelDTO> listaAlugueis() {
         return getAllAlugueisUC.execute();
     }

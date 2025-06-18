@@ -20,17 +20,16 @@ public class Aluguel {
     private Integer id;
     private Date dataInicial;
     private int periodo;
-    @ManyToOne
-    private Jogo jogo;
+    //@ManyToOne
+    //private Jogo jogo;
     //@ManyToOne
     //private Cliente cliente;
 
     public Aluguel(){}
-    public Aluguel(Integer id, Date dataInicial, int periodo, Jogo jogo){
+    public Aluguel(Integer id, Date dataInicial, int periodo){
         this.id = id;
         this.dataInicial = dataInicial;
         this.periodo = periodo;
-        this.jogo = jogo;
     }
     public Integer getId() {
         return id;
@@ -49,12 +48,6 @@ public class Aluguel {
     }
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
-    }
-    public Jogo getJogo() {
-        return jogo;
-    }
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
     }
 
 }

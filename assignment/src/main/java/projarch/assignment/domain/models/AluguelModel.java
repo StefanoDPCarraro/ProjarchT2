@@ -3,18 +3,18 @@ package projarch.assignment.domain.models;
 import java.util.Date;
 import java.util.List;
 
-public abstract class AluguelModel {
+public class AluguelModel {
     private int id;
     private int periodo;
     private Date dataInicial;
-    private List<JogoModel> jogos;
+    //private List<JogoModel> jogos;
 
 
-    protected AluguelModel(int codigo, int periodo, Date dataInicial, List<JogoModel> jogos) {
+    public AluguelModel(int codigo, int periodo, Date dataInicial) {
         this.id = id;
         this.periodo = periodo;
         this.dataInicial = dataInicial;
-        this.jogos = jogos;
+        //this.jogos = jogos;
     }
 
     public int getId() {
@@ -41,13 +41,13 @@ public abstract class AluguelModel {
         this.dataInicial = dataInicial;
     }
 
-    public List<JogoModel> getJogos() {
+   /*  public List<JogoModel> getJogos() {
         return jogos;
     }
 
     public void setJogos(List<JogoModel> jogos) {
         this.jogos = jogos;
-    }
+    }*/
 
 
 

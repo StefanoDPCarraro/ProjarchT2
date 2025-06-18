@@ -8,14 +8,14 @@ public class AluguelDTO{
     private int id;
         private int periodo;
         private Date dataInicial;
-        private List<JogoDTO> jogos;
+        //private List<JogoDTO> jogos;
     
     
-        protected AluguelDTO(int codigo, int periodo, Date dataInicial, List<JogoDTO> jogos) {
+        public AluguelDTO(int codigo, int periodo, Date dataInicial) {
             this.id = id;
             this.periodo = periodo;
             this.dataInicial = dataInicial;
-            this.jogos = jogos;
+            //this.jogos = jogos;
         }
     
         public int getId() {
@@ -42,11 +42,11 @@ public class AluguelDTO{
             this.dataInicial = dataInicial;
         }
     
-        public List<JogoDTO> getJogos() {
+        /*public List<JogoDTO> getJogos() {
             return jogos;
         }
     
         public void setJogos(List<JogoDTO> jogos) {
             this.jogos = jogos;
-        }
+        }*/
 }
