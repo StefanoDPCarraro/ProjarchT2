@@ -15,11 +15,7 @@ public class ClienteService {
 
     public ClienteService(IClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
-    }
 
-    public List<Cliente> findAll(){
-
-        
         //Inserções de teste
         Cliente c1 = new Empresarial(null, "Empresa Alpha", "Rua A, 100", "Emp Alpha", "12345678000123");
         Cliente c2 = new Empresarial(null, "Empresa Beta", "Rua B, 200", "Emp Beta", "23456789000134");
@@ -32,7 +28,9 @@ public class ClienteService {
         clienteRepository.save(c3);
         clienteRepository.save(c4);
         clienteRepository.save(c5);
-        
+    }
+
+    public List<Cliente> findAll(){
         return clienteRepository.findAll();
     }
 
