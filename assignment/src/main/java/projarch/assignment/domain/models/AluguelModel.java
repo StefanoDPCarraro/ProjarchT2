@@ -10,7 +10,7 @@ public class AluguelModel {
     //private List<JogoModel> jogos;
 
 
-    public AluguelModel(int codigo, int periodo, Date dataInicial) {
+    public AluguelModel(int id, int periodo, Date dataInicial) {
         this.id = id;
         this.periodo = periodo;
         this.dataInicial = dataInicial;

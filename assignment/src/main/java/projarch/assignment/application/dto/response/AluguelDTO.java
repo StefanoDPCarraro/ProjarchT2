@@ -6,12 +6,11 @@ import java.util.List;
 
 public class AluguelDTO{
     private int id;
-        private int periodo;
-        private Date dataInicial;
-        //private List<JogoDTO> jogos;
+    private int periodo;
+    private Date dataInicial;
     
     
-        public AluguelDTO(int codigo, int periodo, Date dataInicial) {
+        public AluguelDTO(int id, int periodo, Date dataInicial) {
             this.id = id;
             this.periodo = periodo;
             this.dataInicial = dataInicial;

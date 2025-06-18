@@ -6,24 +6,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "aluguel")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Aluguel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date dataInicial;
     private int periodo;
-    //@ManyToOne
-    //private Jogo jogo;
-    //@ManyToOne
-    //private Cliente cliente;
+
 
     public Aluguel(){}
     public Aluguel(Integer id, Date dataInicial, int periodo){
