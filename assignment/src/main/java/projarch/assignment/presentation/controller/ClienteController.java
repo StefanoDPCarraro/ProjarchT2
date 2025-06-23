@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import projarch.assignment.application.dto.cliente.ClienteResponseDTO;
+import projarch.assignment.application.dto.cliente.CreateClienteDTO;
+import projarch.assignment.application.useCase.CadastraClienteUC;
 import projarch.assignment.application.useCase.GetAllClientesUC;
 import projarch.assignment.application.useCase.ValidaClienteUC;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ClienteController {
     private GetAllClientesUC getAllClientesUC;
     private ValidaClienteUC validaClienteUC;
+    private CadastraClienteUC cadastraClienteUC;
 
     public ClienteController(GetAllClientesUC getAllClientesUC, ValidaClienteUC validaClienteUC) {
         this.getAllClientesUC = getAllClientesUC;
@@ -35,4 +38,10 @@ public class ClienteController {
     public ResponseEntity<Boolean> validaCliente(@RequestBody Integer id){
         return ResponseEntity.ok(validaClienteUC.execute(id));
     }
+
+    @PostMapping("/cadastro/cadcliente")
+    public ResponseEntity<Boolean> cadastraCliente(@RequestBody CreateClienteDTO dto) {        
+        return ResponseEntity.ok(cadastraClienteUC.execute(dto));
+    }
+    
 }

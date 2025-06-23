@@ -38,5 +38,14 @@ public class ClienteService {
         return clienteRepository.existsById(id);
     }
 
+    public Cliente cadastraIndividual(String nome, String endereco, String cpf){
+        Cliente individual = new Individual(null, nome, endereco, cpf);
+        return clienteRepository.save(individual);
+    }
+
+    public Cliente cadastraEmpresarial(String nome, String endereco, String nomeFantasia, String cnpj){
+        Cliente empresarial = new Empresarial(null, nome, endereco, nomeFantasia, cnpj);
+        return clienteRepository.save(empresarial);
+    }
 
 }
