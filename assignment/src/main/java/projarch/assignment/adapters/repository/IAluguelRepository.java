@@ -6,4 +6,5 @@ import projarch.assignment.domain.models.AluguelModel;
 
 public interface IAluguelRepository {
     List<AluguelModel> getAllAlugueis();
+    boolean validaAluguel(Integer id);
 }

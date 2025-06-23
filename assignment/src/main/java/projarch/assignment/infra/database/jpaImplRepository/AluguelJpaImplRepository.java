@@ -26,5 +26,10 @@ public class AluguelJpaImplRepository implements IAluguelRepository {
     public List<AluguelModel> getAllAlugueis() {
         return alugueisMapper.listEntityModel(repository.findAll());
     }
+
+    @Override
+    public boolean validaAluguel(Integer id){
+        return repository.existsById(id);
+    }
 }
 

@@ -1,9 +1,10 @@
 package projarch.assignment.domain.services;
 
-import projarch.assignment.adapters.repository.IAluguelRepository;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import projarch.assignment.adapters.repository.IAluguelRepository;
 import projarch.assignment.domain.models.AluguelModel;
 
 @Service
@@ -16,5 +17,9 @@ public class AluguelService {
 
     public List<AluguelModel> getAllAlugueis(){
         return aluguelRepository.getAllAlugueis();
+    }
+
+    public boolean validaAluguel(Integer id){
+        return aluguelRepository.validaAluguel(id);
     }
 }
