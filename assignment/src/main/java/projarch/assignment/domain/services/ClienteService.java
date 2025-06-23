@@ -34,5 +34,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    public boolean existsById(Integer id){
+        return clienteRepository.existsById(id);
+    }
+
 
 }
