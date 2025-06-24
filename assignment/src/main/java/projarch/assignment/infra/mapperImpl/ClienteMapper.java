@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.NoArgsConstructor;
 import projarch.assignment.adapters.IMapper.IClienteMapper;
+import projarch.assignment.application.dto.request.CreateClienteDTO;
 import projarch.assignment.application.dto.response.ClienteResponseDTO;
 import projarch.assignment.application.dto.response.EmpresarialResponseDTO;
 import projarch.assignment.application.dto.response.IndividualResponseDTO;
@@ -108,6 +109,39 @@ public class ClienteMapper implements IClienteMapper{
         entity.getNome(), 
         entity.getEndereco(), 
         entity.getCpf());
+    }
+
+    @Override
+    public Cliente toDomain(CreateClienteDTO dto){
+        if(dto == null){
+            return null;
+        }
+
+        if(dto.getTipo().equalsIgnoreCase("empresarial")){
+            return toDomainEmpresarial(dto);
+        }
+
+        if(dto.getTipo().equalsIgnoreCase("individual")){
+            return toDomainIndividual(dto);
+        }
+
+        throw new IllegalArgumentException();
+
+    }
+
+    private Empresarial toDomainEmpresarial(CreateClienteDTO dto){
+        return new Empresarial(null, 
+        dto.getNome(), 
+        dto.getEndereço(),
+        dto.getNomeFantasia(),
+        dto.getCnpj());
+    }
+
+    private Individual toDomainIndividual(CreateClienteDTO dto){
+        return new Individual(null, 
+        dto.getNome(), 
+        dto.getEndereço(),
+        dto.getCpf());
     }
 
     public ClienteResponseDTO toResponseDTO(Cliente domain){

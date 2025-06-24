@@ -8,5 +8,6 @@ import projarch.assignment.domain.models.Cliente;
 
 public interface IClienteMapper {
     List<ClienteResponseDTO> toResponseDTO(List<Cliente> domain);
+    Cliente toDomain(CreateClienteDTO dto);
 }
 
