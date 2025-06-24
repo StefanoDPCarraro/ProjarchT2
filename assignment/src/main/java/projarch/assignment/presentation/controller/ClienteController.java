@@ -23,9 +23,10 @@ public class ClienteController {
     private ValidaClienteUC validaClienteUC;
     private CadastraClienteUC cadastraClienteUC;
 
-    public ClienteController(GetAllClientesUC getAllClientesUC, ValidaClienteUC validaClienteUC) {
+    public ClienteController(GetAllClientesUC getAllClientesUC, ValidaClienteUC validaClienteUC, CadastraClienteUC cadastraClienteUC) {
         this.getAllClientesUC = getAllClientesUC;
         this.validaClienteUC = validaClienteUC;
+        this.cadastraClienteUC = cadastraClienteUC;
     }
 
 
@@ -41,7 +42,20 @@ public class ClienteController {
 
     @PostMapping("/cadastro/cadcliente")
     public ResponseEntity<Boolean> cadastraCliente(@RequestBody CreateClienteDTO dto) {        
-        return ResponseEntity.ok(cadastraClienteUC.execute(dto));
+        try {
+            if (cadastraClienteUC.execute(dto)) {
+                return ResponseEntity.ok(true);
+            } else {
+                return ResponseEntity.badRequest().body(false);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro de validação: " + e.getMessage());
+            return ResponseEntity.badRequest().body(false);
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar cliente: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(false);
+        }
     }
     
 }
