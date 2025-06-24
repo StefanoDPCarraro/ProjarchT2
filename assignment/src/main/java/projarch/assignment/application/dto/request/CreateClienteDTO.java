@@ -1,6 +1,7 @@
 package projarch.assignment.application.dto.request;
 
 public class CreateClienteDTO {
+    Integer numero;
     String nome;
     String endereço;
     String tipo;
@@ -8,7 +9,8 @@ public class CreateClienteDTO {
     String cpf;
     String nomeFantasia;
     
-    public CreateClienteDTO(String nome, String endereço, String tipo, String cpf, String cnpj, String nomeFantasia) {
+    public CreateClienteDTO(Integer numero, String nome, String endereço, String tipo, String cpf, String cnpj, String nomeFantasia) {
+        this.numero = numero;
         this.nome = nome;
         this.endereço = endereço;
         this.tipo = tipo;
@@ -63,6 +65,14 @@ public class CreateClienteDTO {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
     
     

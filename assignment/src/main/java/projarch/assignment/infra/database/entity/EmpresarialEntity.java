@@ -16,7 +16,7 @@ public class EmpresarialEntity extends ClienteEntity{
     private String  cnpj;
 
     public EmpresarialEntity(Integer numero, String nome, String endereco, String nomeFantasia, String cnpj){
-        super(numero, nomeFantasia, endereco);
+        super(numero, nome, endereco);
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
     }

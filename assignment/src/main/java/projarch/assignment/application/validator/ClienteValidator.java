@@ -9,6 +9,10 @@ public class ClienteValidator {
         if (dto == null) {
             throw new IllegalArgumentException("DTO não pode ser nulo.");
         }
+
+        if(dto.getNumero() == null || dto.getNumero() < 0){
+            throw new IllegalArgumentException("Id do cliente não pode ser vazio ou negativo.");
+        }
         if (dto.getNome() == null || dto.getNome().isEmpty()) {
             throw new IllegalArgumentException("Nome do cliente não pode ser vazio.");
         }

@@ -26,7 +26,10 @@ public class ClienteService {
     }
 
     public Cliente cadastraCliente(Cliente cliente){
-        return clienteRepository.save(cliente);
+        System.out.println(cliente.getNome());
+        Cliente c = clienteRepository.save(cliente);
+        System.out.println(c.getNome());
+        return c;
     }
 
     public Optional<Cliente> findById(Integer id){
