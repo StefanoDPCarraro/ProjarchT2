@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import projarch.assignment.adapters.IMapper.IJogosMapper;
+import projarch.assignment.application.dto.request.CreateJogoDTO;
 import projarch.assignment.application.dto.response.JogoDTO;
 import projarch.assignment.application.dto.response.JogoEletronicoDTO;
 import projarch.assignment.application.dto.response.JogoMesaDTO;
@@ -124,5 +125,25 @@ public class JogosMapper implements IJogosMapper {
         return jogosDTO.stream()
                 .map(this::dtoToModel)
                 .toList();
+    }
+
+    public JogoModel createToModel(CreateJogoDTO createJogoDTO) {
+        if (createJogoDTO.getTipo().equals("AVENTURA")  || createJogoDTO.getTipo().equals("ESTRATEGIA") ||  createJogoDTO.getTipo().equals("SIMULACAO")) {
+            return new JogoEletronicoModel(
+                    createJogoDTO.getCodigo(),
+                    createJogoDTO.getNome(),
+                    createJogoDTO.getValorBase(),
+                    EnumTipoEletronico.fromString(createJogoDTO.getTipo()),
+                    createJogoDTO.getPlataforma());
+        }
+        if (createJogoDTO.getTipo().equals("TABULEIRO") || createJogoDTO.getTipo().equals("CARTAS")) {
+            return new JogoMesaModel(
+                    createJogoDTO.getCodigo(),
+                    createJogoDTO.getNome(),
+                    createJogoDTO.getValorBase(),
+                    EnumTipoMesa.fromString(createJogoDTO.getTipo()),
+                    createJogoDTO.getNumeroPecas());
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package projarch.assignment.adapters.IMapper;
 
 import java.util.List;
 
+import projarch.assignment.application.dto.request.CreateJogoDTO;
 import projarch.assignment.application.dto.response.JogoDTO;
 import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.entity.Jogo;
@@ -15,4 +16,5 @@ public interface IJogosMapper {
     List<Jogo> listModelToEntity(List<JogoModel> jogosModel);
     JogoModel dtoToModel(JogoDTO jogoDTO);
     List<JogoModel> listDTOToModel(List<JogoDTO> jogosDTO);
+    JogoModel createToModel(CreateJogoDTO createJogoDTO);
 }

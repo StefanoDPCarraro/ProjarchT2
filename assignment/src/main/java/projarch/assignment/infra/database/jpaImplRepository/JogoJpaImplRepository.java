@@ -7,8 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import projarch.assignment.adapters.IMapper.IJogosMapper;
 import projarch.assignment.adapters.repository.IJogoRepository;
+import projarch.assignment.domain.models.JogoEletronicoModel;
+import projarch.assignment.domain.models.JogoMesaModel;
 import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;
+import projarch.assignment.infra.database.entity.Jogo;
+import projarch.assignment.infra.database.entity.JogoEletronico;
+import projarch.assignment.infra.database.entity.JogoMesa;
 
 @Repository
 public class JogoJpaImplRepository implements IJogoRepository {
@@ -26,8 +31,28 @@ public class JogoJpaImplRepository implements IJogoRepository {
     }
 
     @Override
-    public boolean salvaJogo(JogoModel jogo) {
-        return repository.save(jogosMapper.modelToEntity(jogo)) != null;
+    public JogoModel save(JogoModel jogoModel) {
+        Jogo jogoEntity = null;
+        if(jogoModel instanceof JogoEletronicoModel){
+            JogoEletronico jogo = new JogoEletronico();
+            jogo.setCodigo(jogoModel.getCodigo());
+            jogo.setNome(jogoModel.getNome());
+            jogo.setValorBase(jogoModel.getValorBase());
+            jogo.setPlataforma(((JogoEletronicoModel) jogoModel).getPlataforma());
+            jogo.setTipo(((JogoEletronicoModel) jogoModel).getTipoEletronico());
+            jogoEntity = repository.save(jogo);
+        } else if(jogoModel instanceof JogoMesaModel){
+            JogoMesa jogo = new JogoMesa();
+            jogo.setCodigo(jogoModel.getCodigo());
+            jogo.setNome(jogoModel.getNome());
+            jogo.setValorBase(jogoModel.getValorBase());
+            jogo.setTipo(((JogoMesaModel) jogoModel).getTipoMesa());
+            jogo.setNumeroPecas(((JogoMesaModel) jogoModel).getNumeroPecas());
+            jogoEntity = repository.save(jogo);
+        } else{
+            return null; // or throw an exception if needed
+        }
+        return jogosMapper.entityToModel(jogoEntity);
     }
 
     @Override
