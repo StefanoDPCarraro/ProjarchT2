@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import projarch.assignment.application.useCase.CadastraClienteUC;
 import projarch.assignment.application.useCase.GetAllClientesUC;
-import projarch.assignment.application.useCase.ValidaClienteUC;
 
 
 @RestController
@@ -32,16 +31,15 @@ public class CadastroController {
     private final GetAllJogosUC getAllJogosUC;
     private final CadastraJogoUC cadastraJogoUC;
     private final GetAllClientesUC getAllClientesUC;
-    private final ValidaClienteUC validaClienteUC;
+    
     private final CadastraClienteUC cadastraClienteUC;
 
-    public CadastroController(GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC, CadastraJogoUC cadastraJogoUC, GetAllClientesUC getAllClientesUC, ValidaClienteUC validaClienteUC, CadastraClienteUC cadastraClienteUC) {
+    public CadastroController(GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC, CadastraJogoUC cadastraJogoUC, GetAllClientesUC getAllClientesUC, CadastraClienteUC cadastraClienteUC) {
         this.getAllAlugueisUC = getAllAlugueisUC;
         this.validaAluguelUC = validaAluguelUC;
         this.getAllJogosUC = getAllJogosUC;
         this.cadastraJogoUC = cadastraJogoUC;
         this.getAllClientesUC = getAllClientesUC;
-        this.validaClienteUC = validaClienteUC;
         this.cadastraClienteUC = cadastraClienteUC;
     }
 
@@ -65,17 +63,12 @@ public class CadastroController {
         return cadastraJogoUC.execute(jogoDTO);
     }
     
-        @GetMapping("/cadastro/listaclientes")
+    @GetMapping("/listaclientes")
     public ResponseEntity<List<ClienteResponseDTO>> listaClientes() {
         return ResponseEntity.ok(getAllClientesUC.execute());
     }
-    
-    @PostMapping("/validacliente")
-    public ResponseEntity<Boolean> validaCliente(@RequestBody Integer id){
-        return ResponseEntity.ok(validaClienteUC.execute(id));
-    }
 
-    @PostMapping("/cadastro/cadcliente")
+    @PostMapping("/cadcliente")
     public ResponseEntity<Boolean> cadastraCliente(@RequestBody CreateClienteDTO dto) {        
         try {
             if (cadastraClienteUC.execute(dto)) {
