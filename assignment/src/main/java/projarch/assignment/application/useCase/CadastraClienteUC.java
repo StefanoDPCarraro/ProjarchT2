@@ -2,10 +2,10 @@ package projarch.assignment.application.useCase;
 
 import org.springframework.stereotype.Component;
 
+import projarch.assignment.adapters.IMapper.IClienteMapper;
 import projarch.assignment.application.dto.request.CreateClienteDTO;
 import projarch.assignment.application.validator.ClienteValidator;
 import projarch.assignment.domain.services.ClienteService;
-import projarch.assignment.adapters.IMapper.IClienteMapper;
 
 @Component
 public class CadastraClienteUC {
@@ -18,7 +18,7 @@ public class CadastraClienteUC {
     }
 
     public boolean execute(CreateClienteDTO dto){
-        if (ClienteValidator.isValid(dto)) {
+        if (ClienteValidator.isValid(dto) && !clienteService.existsById(dto.getNumero())) {
             return clienteService.cadastraCliente(clienteMapper.toDomain(dto)) != null;
         }
         

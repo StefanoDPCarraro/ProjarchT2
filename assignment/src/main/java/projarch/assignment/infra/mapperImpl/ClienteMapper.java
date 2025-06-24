@@ -60,7 +60,10 @@ public class ClienteMapper implements IClienteMapper{
     }
 
     private IndividualEntity toEntityIndividual(Individual individual){
-        return new IndividualEntity(individual.getNumero(), individual.getNome(), individual.getEndereço(), individual.getCpf());
+        return new IndividualEntity(individual.getNumero(), 
+        individual.getNome(), 
+        individual.getEndereço(), 
+        individual.getCpf());
     }
 
 
@@ -130,7 +133,7 @@ public class ClienteMapper implements IClienteMapper{
     }
 
     private Empresarial toDomainEmpresarial(CreateClienteDTO dto){
-        return new Empresarial(null, 
+        return new Empresarial(dto.getNumero(), 
         dto.getNome(), 
         dto.getEndereço(),
         dto.getNomeFantasia(),
@@ -138,7 +141,7 @@ public class ClienteMapper implements IClienteMapper{
     }
 
     private Individual toDomainIndividual(CreateClienteDTO dto){
-        return new Individual(null, 
+        return new Individual(dto.getNumero(), 
         dto.getNome(), 
         dto.getEndereço(),
         dto.getCpf());

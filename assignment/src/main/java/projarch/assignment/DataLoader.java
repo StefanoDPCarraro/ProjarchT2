@@ -29,6 +29,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        aluguelJpaRepository.deleteAll();
         jogoJpaRepository.deleteAll();
 
         JogoMesa jm1 = new JogoMesa();
@@ -70,11 +71,11 @@ public class DataLoader implements CommandLineRunner {
 
         clienteJpaRepository.deleteAll();
 
-        ClienteEntity c1 = new EmpresarialEntity(null, "Empresa Alpha", "Rua A, 100", "Emp Alpha", "12345678000123");
-        ClienteEntity c2 = new EmpresarialEntity(null, "Empresa Beta", "Rua B, 200", "Emp Beta", "23456789000134");
-        ClienteEntity c3 = new EmpresarialEntity(null, "Empresa Gamma", "Rua C, 300", "Emp Gamma", "34567890100145");
-        ClienteEntity c4 = new IndividualEntity(null, "João Silva", "Rua D, 400", "12345678901");
-        ClienteEntity c5 = new IndividualEntity(null, "Maria Oliveira", "Rua E, 500", "98765432100");
+        ClienteEntity c1 = new EmpresarialEntity(1, "Empresa Alpha", "Rua A, 100", "Emp Alpha", "12345678000123");
+        ClienteEntity c2 = new EmpresarialEntity(2, "Empresa Beta", "Rua B, 200", "Emp Beta", "23456789000134");
+        ClienteEntity c3 = new EmpresarialEntity(3, "Empresa Gamma", "Rua C, 300", "Emp Gamma", "34567890100145");
+        ClienteEntity c4 = new IndividualEntity(4, "João Silva", "Rua D, 400", "12345678901");
+        ClienteEntity c5 = new IndividualEntity(5, "Maria Oliveira", "Rua E, 500", "98765432100");
 
         clienteJpaRepository.save(c1);
         clienteJpaRepository.save(c2);
@@ -82,7 +83,6 @@ public class DataLoader implements CommandLineRunner {
         clienteJpaRepository.save(c4);
         clienteJpaRepository.save(c5);
 
-        aluguelJpaRepository.deleteAll();
 
         Aluguel aluguel1 = new Aluguel();
         aluguel1.setDataInicial(null);
