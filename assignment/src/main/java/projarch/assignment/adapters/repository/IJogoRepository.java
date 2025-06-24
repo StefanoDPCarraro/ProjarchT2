@@ -7,4 +7,5 @@ import projarch.assignment.domain.models.JogoModel;
 public interface IJogoRepository {
     List<JogoModel> getAllJogos();
     boolean salvaJogo(JogoModel jogo);
+    boolean existsById(int id);
 }

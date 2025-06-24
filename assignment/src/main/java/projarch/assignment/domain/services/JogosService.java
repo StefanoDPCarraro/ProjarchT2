@@ -22,4 +22,8 @@ public class JogosService {
     public boolean salvaJogo(JogoModel jogo) {
         return jogoRepository.salvaJogo(jogo);
     }
+
+    public boolean validaJogo(int id){
+        return jogoRepository.existsById(id);
+    }
 }

@@ -28,4 +28,9 @@ public class JogoJpaImplRepository implements IJogoRepository {
     public boolean salvaJogo(JogoModel jogo) {
         return repository.save(jogosMapper.modelToEntity(jogo)) != null;
     }
+
+    @Override
+    public boolean existsById(int id){
+        return repository.existsById(id);
+    }
 }
