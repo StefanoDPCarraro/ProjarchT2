@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import projarch.assignment.application.dto.response.AluguelDTO;
 import projarch.assignment.application.useCase.ListaAlugueisByClienteUC;
+import projarch.assignment.application.useCase.ListaAlugueisByJogoUC;
 import projarch.assignment.application.useCase.ValidaClienteUC;
 import projarch.assignment.application.useCase.ValidaJogoUC;
 
@@ -21,11 +22,13 @@ public class AcmeGamesController {
     private final ValidaClienteUC validaClienteUC;
     private final ValidaJogoUC validaJogoUC;
     private final ListaAlugueisByClienteUC listaAlugueisByClienteUC;
+    private final ListaAlugueisByJogoUC listaAlugueisByJogoUC;
 
-    public AcmeGamesController(ValidaClienteUC validaClienteUC, ValidaJogoUC validaJogoUC, ListaAlugueisByClienteUC listaAlugueisByClienteUC) {
+    public AcmeGamesController(ValidaClienteUC validaClienteUC, ValidaJogoUC validaJogoUC, ListaAlugueisByClienteUC listaAlugueisByClienteUC, ListaAlugueisByJogoUC listaAlugueisByJogoUC) {
         this.validaClienteUC = validaClienteUC;
         this.validaJogoUC = validaJogoUC;
         this.listaAlugueisByClienteUC = listaAlugueisByClienteUC;
+        this.listaAlugueisByJogoUC = listaAlugueisByJogoUC;
     }
 
     @PostMapping("/validacliente")
@@ -41,5 +44,10 @@ public class AcmeGamesController {
     @GetMapping("cliente/aluguel/{numero}")
     public ResponseEntity<List<AluguelDTO>> listaAlugueisPorCliente(@PathVariable int numero){
         return ResponseEntity.ok(listaAlugueisByClienteUC.execute(numero));
+    }
+
+    @GetMapping("jogo/aluguel/{numero}")
+    public ResponseEntity<List<AluguelDTO>> listaAlugueisPorJogo(@PathVariable int numero){
+        return ResponseEntity.ok(listaAlugueisByJogoUC.execute(numero));
     }
 }

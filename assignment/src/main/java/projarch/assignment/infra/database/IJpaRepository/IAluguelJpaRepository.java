@@ -12,4 +12,5 @@ public interface IAluguelJpaRepository extends JpaRepository<Aluguel, Integer> {
     void deleteAll();
     boolean existsById(Integer id);
     List<Aluguel> findByCliente_Numero(Integer id);
+    List<Aluguel> findByJogo_Codigo(Integer codigo);
 }

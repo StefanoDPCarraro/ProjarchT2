@@ -29,6 +29,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        aluguelJpaRepository.deleteAll();
         jogoJpaRepository.deleteAll();
 
         JogoMesa jm1 = new JogoMesa();
@@ -68,6 +69,7 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Dados de jogos iniciais carregados com sucesso!");
 
+        
         clienteJpaRepository.deleteAll();
 
         ClienteEntity c1 = new EmpresarialEntity(null, "Empresa Alpha", "Rua A, 100", "Emp Alpha", "12345678000123");
@@ -82,24 +84,27 @@ public class DataLoader implements CommandLineRunner {
         clienteJpaRepository.save(c4);
         clienteJpaRepository.save(c5);
 
-        aluguelJpaRepository.deleteAll();
+        
 
         Aluguel aluguel1 = new Aluguel();
         aluguel1.setDataInicial(null);
         aluguel1.setPeriodo(1);
         aluguel1.setCliente(c1);
+        aluguel1.setJogo(je1);
         aluguelJpaRepository.save(aluguel1);
 
         Aluguel aluguel2 = new Aluguel();
         aluguel2.setDataInicial(null);
         aluguel2.setPeriodo(2);
         aluguel2.setCliente(c3);
+        aluguel2.setJogo(jm1);
         aluguelJpaRepository.save(aluguel2);
 
         Aluguel aluguel3 = new Aluguel();
         aluguel3.setDataInicial(null);
         aluguel3.setPeriodo(3);
         aluguel3.setCliente(c5);
+        aluguel3.setJogo(je2);
         aluguelJpaRepository.save(aluguel3);
 
         System.out.println("Dados de ALUGUEIS iniciais carregados com sucesso!");

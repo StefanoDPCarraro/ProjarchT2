@@ -26,4 +26,8 @@ public class AluguelService {
     public List<AluguelModel> findByClienteId(Integer id){
         return aluguelRepository.findByClienteId(id);
     }
+
+    public List<AluguelModel> findByJogoId(Integer id){
+        return aluguelRepository.findByJogoId(id);
+    }
 }

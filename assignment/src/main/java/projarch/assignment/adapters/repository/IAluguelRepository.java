@@ -8,4 +8,5 @@ public interface IAluguelRepository {
     List<AluguelModel> getAllAlugueis();
     boolean validaAluguel(Integer id);
     List<AluguelModel> findByClienteId(Integer idCliente);
+    List<AluguelModel> findByJogoId(Integer idJogo);
 }

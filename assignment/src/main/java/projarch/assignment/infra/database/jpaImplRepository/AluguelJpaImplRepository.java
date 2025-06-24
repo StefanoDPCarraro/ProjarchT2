@@ -39,5 +39,12 @@ public class AluguelJpaImplRepository implements IAluguelRepository {
         .map(alugueisMapper::entityToModel)
         .collect(Collectors.toList());
     }
+
+    @Override
+    public List<AluguelModel> findByJogoId(Integer idJogo) {
+        return repository.findByJogo_Codigo(idJogo).stream()
+        .map(alugueisMapper::entityToModel)
+        .collect(Collectors.toList());
+    }
 }
 
