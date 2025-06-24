@@ -12,6 +12,14 @@ import projarch.assignment.infra.database.entity.Aluguel;
 
 @Component
 public class AluguelMapper implements IAlugueisMapper {
+    private ClienteMapper clienteMapper;
+    private JogosMapper jogoMapper;
+
+    public AluguelMapper(ClienteMapper clienteMapper, JogosMapper jogoMapper) {
+        this.clienteMapper = clienteMapper;
+        this.jogoMapper = jogoMapper;
+    }
+
 
     @Override
     public AluguelDTO modelToDTO(AluguelModel aluguelModel) {
@@ -34,7 +42,9 @@ public class AluguelMapper implements IAlugueisMapper {
         return new AluguelModel(
                 aluguel.getId(),
                 aluguel.getPeriodo(),
-                aluguel.getDataInicial()
+                aluguel.getDataInicial(),
+                clienteMapper.toDomain(aluguel.getCliente()),
+                jogoMapper.entityToModel(aluguel.getJogo())
         );
     }
 
@@ -44,7 +54,9 @@ public class AluguelMapper implements IAlugueisMapper {
                 .map(aluguel -> new AluguelModel(
                         aluguel.getId(),
                         aluguel.getPeriodo(),
-                        aluguel.getDataInicial()
+                        aluguel.getDataInicial(),
+                        clienteMapper.toDomain(aluguel.getCliente()),
+                        jogoMapper.entityToModel(aluguel.getJogo())
                 ))
                 .collect(Collectors.toList());
     }

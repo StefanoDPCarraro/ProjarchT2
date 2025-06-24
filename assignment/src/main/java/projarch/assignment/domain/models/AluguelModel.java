@@ -1,20 +1,21 @@
 package projarch.assignment.domain.models;
 
 import java.util.Date;
-import java.util.List;
 
 public class AluguelModel {
     private int id;
     private int periodo;
     private Date dataInicial;
-    //private List<JogoModel> jogos;
+    private Cliente cliente;
+    private JogoModel jogo;
 
 
-    public AluguelModel(int id, int periodo, Date dataInicial) {
+    public AluguelModel(int id, int periodo, Date dataInicial, Cliente cliente, JogoModel jogo) {
         this.id = id;
         this.periodo = periodo;
         this.dataInicial = dataInicial;
-        //this.jogos = jogos;
+        this.jogo = jogo;
+        this.cliente = cliente;
     }
 
     public int getId() {
@@ -41,14 +42,22 @@ public class AluguelModel {
         this.dataInicial = dataInicial;
     }
 
-   /*  public List<JogoModel> getJogos() {
-        return jogos;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setJogos(List<JogoModel> jogos) {
-        this.jogos = jogos;
-    }*/
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
+    public JogoModel getJogo() {
+        return jogo;
+    }
 
+    public void setJogo(JogoModel jogo) {
+        this.jogo = jogo;
+    }
+
+    
 
 }

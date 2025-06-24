@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,13 +17,19 @@ public class Aluguel {
     private Integer id;
     private Date dataInicial;
     private int periodo;
+    @ManyToOne
+    private ClienteEntity cliente;
+    @ManyToOne
+    private Jogo jogo;
 
 
     public Aluguel(){}
-    public Aluguel(Integer id, Date dataInicial, int periodo){
+    public Aluguel(Integer id, Date dataInicial, int periodo, ClienteEntity cliente, Jogo jogo){
         this.id = id;
         this.dataInicial = dataInicial;
         this.periodo = periodo;
+        this.cliente = cliente;
+        this.jogo = jogo;
     }
     public Integer getId() {
         return id;
@@ -43,5 +49,22 @@ public class Aluguel {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public Jogo getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
+
 
 }
