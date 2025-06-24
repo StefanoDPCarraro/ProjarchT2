@@ -1,6 +1,7 @@
 package projarch.assignment.domain.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class ClienteService {
 
     public Cliente cadastraCliente(Cliente cliente){
         return clienteRepository.save(cliente);
+    }
+
+    public Optional<Cliente> findById(Integer id){
+        return clienteRepository.findById(id);
     }
 
 

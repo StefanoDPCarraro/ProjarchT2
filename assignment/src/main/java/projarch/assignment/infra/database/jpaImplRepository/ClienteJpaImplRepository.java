@@ -1,6 +1,7 @@
 package projarch.assignment.infra.database.jpaImplRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,12 @@ public class ClienteJpaImplRepository implements IClienteRepository{
     @Override
     public boolean existsById(Integer id){
         return repository.existsById(id);
+    }
+
+    @Override
+    public Optional<Cliente> findById(Integer id){
+        return repository.findById(id)
+        .map(clienteMapper::toDomain);
     }
 
 }
