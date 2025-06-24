@@ -1,6 +1,7 @@
 package projarch.assignment.domain.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,9 @@ public class JogosService {
 
     public boolean validaJogo(int id){
         return jogoRepository.existsById(id);
+    }
+
+    public Optional<JogoModel> findById(int id){
+        return jogoRepository.findById(id);
     }
 }

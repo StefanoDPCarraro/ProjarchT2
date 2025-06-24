@@ -1,6 +1,7 @@
 package projarch.assignment.infra.database.jpaImplRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +33,11 @@ public class JogoJpaImplRepository implements IJogoRepository {
     @Override
     public boolean existsById(int id){
         return repository.existsById(id);
+    }
+
+    @Override
+    public Optional<JogoModel> findById(int id){
+        return repository.findById(id)
+        .map(jogosMapper::entityToModel);
     }
 }
