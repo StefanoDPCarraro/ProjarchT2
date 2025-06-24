@@ -11,4 +11,6 @@ public interface IAluguelRepository {
     List<AluguelModel> findByClienteId(Integer idCliente);
     List<AluguelModel> findByJogoId(Integer idJogo);
     Optional<AluguelModel> findById(Integer id);
+    boolean existsById(Integer id);
+    AluguelModel save(AluguelModel aluguel);
 }

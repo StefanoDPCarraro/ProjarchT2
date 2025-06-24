@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import projarch.assignment.adapters.IMapper.IAlugueisMapper;
+import projarch.assignment.application.dto.request.CreateAluguelDTO;
 import projarch.assignment.application.dto.response.AluguelDTO;
 import projarch.assignment.domain.models.AluguelModel;
+import projarch.assignment.domain.models.Cliente;
+import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.entity.Aluguel;
 
 @Component
@@ -62,4 +65,33 @@ public class AluguelMapper implements IAlugueisMapper {
                 ))
                 .collect(Collectors.toList());
     }
+    @Override
+    public Aluguel toEntity(AluguelModel domain){
+        if (domain == null) {
+            return null;
+        }
+        throw new IllegalArgumentException();
+    }
+    @Override
+    public AluguelModel toDomain(Aluguel entity){
+        if (entity == null) {
+            return null;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public AluguelModel toDomain(CreateAluguelDTO aluguelDTO, Cliente cliente, JogoModel jogo){
+        if (aluguelDTO == null) {
+            return null;
+        }
+        return new AluguelModel(
+                aluguelDTO.getId(),
+                aluguelDTO.getPeriodo(),
+                aluguelDTO.getDataInicial(),
+                cliente,
+                jogo
+                );
+    }
+
 }

@@ -1,26 +1,26 @@
 package projarch.assignment.adapters.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import projarch.assignment.application.dto.request.CreateClienteDTO;
-import projarch.assignment.application.dto.response.AluguelDTO;
-import projarch.assignment.application.dto.response.ClienteResponseDTO;
-import projarch.assignment.application.dto.response.JogoDTO;
-import projarch.assignment.application.useCase.CadastraJogoUC;
-import projarch.assignment.application.useCase.GetAllAlugueisUC;
-import projarch.assignment.application.useCase.GetAllJogosUC;
-import projarch.assignment.application.useCase.ValidaAluguelUC;
-
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import projarch.assignment.application.dto.request.CreateAluguelDTO;
+import projarch.assignment.application.dto.request.CreateClienteDTO;
+import projarch.assignment.application.dto.response.AluguelDTO;
+import projarch.assignment.application.dto.response.ClienteResponseDTO;
+import projarch.assignment.application.dto.response.JogoDTO;
+import projarch.assignment.application.useCase.CadastraAluguelUC;
 import projarch.assignment.application.useCase.CadastraClienteUC;
+import projarch.assignment.application.useCase.CadastraJogoUC;
+import projarch.assignment.application.useCase.GetAllAlugueisUC;
 import projarch.assignment.application.useCase.GetAllClientesUC;
+import projarch.assignment.application.useCase.GetAllJogosUC;
+import projarch.assignment.application.useCase.ValidaAluguelUC;
 
 
 @RestController
@@ -31,16 +31,17 @@ public class CadastroController {
     private final GetAllJogosUC getAllJogosUC;
     private final CadastraJogoUC cadastraJogoUC;
     private final GetAllClientesUC getAllClientesUC;
-    
+    private final CadastraAluguelUC cadastraAluguelUC;
     private final CadastraClienteUC cadastraClienteUC;
 
-    public CadastroController(GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC, CadastraJogoUC cadastraJogoUC, GetAllClientesUC getAllClientesUC, CadastraClienteUC cadastraClienteUC) {
+    public CadastroController(CadastraAluguelUC cadastraAluguelUC, GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC, CadastraJogoUC cadastraJogoUC, GetAllClientesUC getAllClientesUC, CadastraClienteUC cadastraClienteUC) {
         this.getAllAlugueisUC = getAllAlugueisUC;
         this.validaAluguelUC = validaAluguelUC;
         this.getAllJogosUC = getAllJogosUC;
         this.cadastraJogoUC = cadastraJogoUC;
         this.getAllClientesUC = getAllClientesUC;
         this.cadastraClienteUC = cadastraClienteUC;
+        this.cadastraAluguelUC = cadastraAluguelUC;
     }
 
     @GetMapping("/listaalugueis")
@@ -53,6 +54,11 @@ public class CadastroController {
         return validaAluguelUC.execute(id);
     }
 
+    @PostMapping("/cadaluguel")
+    public boolean cadastraAluguel(@RequestBody CreateAluguelDTO createAluguelDTO) {
+        return cadastraAluguelUC.execute(createAluguelDTO);
+
+    }
     @GetMapping("/listajogos")
     public List<JogoDTO> listaJogos(){
         return getAllJogosUC.execute();

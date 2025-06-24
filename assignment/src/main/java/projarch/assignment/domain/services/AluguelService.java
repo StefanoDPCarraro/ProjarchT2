@@ -24,6 +24,15 @@ public class AluguelService {
         return aluguelRepository.validaAluguel(id);
     }
 
+    public AluguelModel cadastraAluguel(AluguelModel aluguel){
+        AluguelModel a = aluguelRepository.save(aluguel);
+        return a;
+    }
+
+    public boolean existsById(Integer id){
+        return aluguelRepository.existsById(id);
+    }
+
     public Optional<AluguelModel> findById(Integer id){
         return aluguelRepository.findById(id);
     }

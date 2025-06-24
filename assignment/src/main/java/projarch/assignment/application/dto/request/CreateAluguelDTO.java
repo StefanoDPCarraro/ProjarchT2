@@ -1,17 +1,18 @@
-package projarch.assignment.application.dto.response;
+package projarch.assignment.application.dto.request;
 
 import java.util.Date;
 
 
-public class AluguelDTO{
-    private int id;
-    private int periodo;
+
+public class CreateAluguelDTO{
+    private Integer id;
+    private Integer periodo;
     private Date dataInicial;
-    private ClienteResponseDTO cliente;
-    private JogoDTO jogo;
+    private Integer cliente;
+    private Integer jogo;
     
     
-        public AluguelDTO(int id, int periodo, Date dataInicial, ClienteResponseDTO cliente, JogoDTO jogo) {
+        public CreateAluguelDTO(Integer id, Integer periodo, Date dataInicial, Integer cliente, Integer jogo) {
             this.id = id;
             this.periodo = periodo;
             this.dataInicial = dataInicial;
@@ -19,7 +20,7 @@ public class AluguelDTO{
             this.jogo = jogo;
         }
     
-        public int getId() {
+        public Integer getId() {
             return id;
         }
     
@@ -27,7 +28,7 @@ public class AluguelDTO{
             this.id = id;
         }
     
-        public int getPeriodo() {
+        public Integer getPeriodo() {
             return periodo;
         }
     
@@ -43,19 +44,19 @@ public class AluguelDTO{
             this.dataInicial = dataInicial;
         }
 
-        public ClienteResponseDTO getCliente() {
+        public Integer getCliente() {
             return cliente;
         }
 
-        public void setCliente(ClienteResponseDTO cliente) {
+        public void setCliente(Integer cliente) {
             this.cliente = cliente;
         }
 
-        public JogoDTO getJogo() {
+        public Integer getJogo() {
             return jogo;
         }
 
-        public void setJogo(JogoDTO jogo) {
+        public void setJogo(Integer jogo) {
             this.jogo = jogo;
         }
     
