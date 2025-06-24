@@ -18,4 +18,8 @@ public class JogosService {
     public List<JogoModel> getAllJogos(){
         return jogoRepository.getAllJogos();
     }
+
+    public boolean salvaJogo(JogoModel jogo) {
+        return jogoRepository.salvaJogo(jogo);
+    }
 }

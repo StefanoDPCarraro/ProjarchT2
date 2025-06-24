@@ -8,7 +8,6 @@ import projarch.assignment.infra.database.entity.Jogo;
 
 public interface IJogoJpaRepository extends JpaRepository<Jogo, Integer> {
     List<Jogo> findAll();
-    // Both only used by seeder
     Jogo save(Jogo jogo);
     void deleteAll();
 }

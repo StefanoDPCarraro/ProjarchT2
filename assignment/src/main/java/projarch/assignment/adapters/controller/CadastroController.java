@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import projarch.assignment.application.dto.response.AluguelDTO;
 import projarch.assignment.application.dto.response.JogoDTO;
+import projarch.assignment.application.useCase.CadastraJogoUC;
 import projarch.assignment.application.useCase.GetAllAlugueisUC;
 import projarch.assignment.application.useCase.GetAllJogosUC;
 import projarch.assignment.application.useCase.ValidaAluguelUC;
@@ -12,6 +13,7 @@ import projarch.assignment.application.useCase.ValidaAluguelUC;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -21,11 +23,13 @@ public class CadastroController {
     private final GetAllAlugueisUC getAllAlugueisUC;
     private final ValidaAluguelUC validaAluguelUC;
     private final GetAllJogosUC getAllJogosUC;
+    private final CadastraJogoUC cadastraJogoUC;
 
-    public CadastroController(GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC) {
+    public CadastroController(GetAllAlugueisUC getAllAlugueisUC, ValidaAluguelUC validaAluguelUC, GetAllJogosUC getAllJogosUC, CadastraJogoUC cadastraJogoUC) {
         this.getAllAlugueisUC = getAllAlugueisUC;
         this.validaAluguelUC = validaAluguelUC;
         this.getAllJogosUC = getAllJogosUC;
+        this.cadastraJogoUC = cadastraJogoUC;
     }
 
     @GetMapping("/listaalugueis")
@@ -41,6 +45,11 @@ public class CadastroController {
     @GetMapping("/listajogos")
     public List<JogoDTO> listaJogos(){
         return getAllJogosUC.execute();
+    }
+
+    @PostMapping("/cadjogo")
+    public boolean cadastraJogo(@RequestBody JogoDTO jogoDTO) {
+        return cadastraJogoUC.execute(jogoDTO);
     }
     
 }

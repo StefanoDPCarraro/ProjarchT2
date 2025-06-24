@@ -19,4 +19,12 @@ public enum EnumTipoEletronico {
         }
         throw new IllegalArgumentException("Código inválido para EnumTipoEletronico: " + codigo);
     }
+    public static EnumTipoEletronico fromString(String tipo) {
+        for (EnumTipoEletronico e : EnumTipoEletronico.values()) {
+            if (e.name().equalsIgnoreCase(tipo)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

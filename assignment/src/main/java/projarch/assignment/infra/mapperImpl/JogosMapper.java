@@ -8,6 +8,8 @@ import projarch.assignment.adapters.IMapper.IJogosMapper;
 import projarch.assignment.application.dto.response.JogoDTO;
 import projarch.assignment.application.dto.response.JogoEletronicoDTO;
 import projarch.assignment.application.dto.response.JogoMesaDTO;
+import projarch.assignment.domain.enums.EnumTipoEletronico;
+import projarch.assignment.domain.enums.EnumTipoMesa;
 import projarch.assignment.domain.models.JogoEletronicoModel;
 import projarch.assignment.domain.models.JogoMesaModel;
 import projarch.assignment.domain.models.JogoModel;
@@ -72,33 +74,55 @@ public class JogosMapper implements IJogosMapper {
                 .toList();
     }
 
-    // Not being used yet
-    // Uncomment when needed
+    public Jogo modelToEntity(JogoModel jogoModel) {
+        if (jogoModel instanceof JogoEletronicoModel) {
+            return new JogoEletronico(
+                    ((JogoEletronicoModel) jogoModel).getTipoEletronico(),
+                    ((JogoEletronicoModel) jogoModel).getPlataforma(),
+                    jogoModel.getCodigo(),
+                    jogoModel.getNome(),
+                    jogoModel.getValorBase());
+        }
+        if (jogoModel instanceof JogoMesaModel) {
+            return new JogoMesa(
+                    ((JogoMesaModel) jogoModel).getTipoMesa(),
+                    ((JogoMesaModel) jogoModel).getNumeroPecas(),
+                    jogoModel.getCodigo(),
+                    jogoModel.getNome(),
+                    jogoModel.getValorBase());
+        }
+        return null;
+    }
 
-    // public Jogo modelToEntity(JogoModel jogoModel) {
-    //     if (jogoModel instanceof JogoEletronicoModel) {
-    //         return new JogoEletronico(
-    //                 ((JogoEletronicoModel) jogoModel).getTipoEletronico(),
-    //                 ((JogoEletronicoModel) jogoModel).getPlataforma(),
-    //                 jogoModel.getCodigo(),
-    //                 jogoModel.getNome(),
-    //                 jogoModel.getValorBase());
-    //     }
-    //     if (jogoModel instanceof JogoMesaModel) {
-    //         return new JogoMesa(
-    //                 ((JogoMesaModel) jogoModel).getTipoMesa(),
-    //                 ((JogoMesaModel) jogoModel).getNumeroPecas(),
-    //                 jogoModel.getCodigo(),
-    //                 jogoModel.getNome(),
-    //                 jogoModel.getValorBase());
-    //     }
-    //     return null;
-    // }
+    public List<Jogo> listModelToEntity(List<JogoModel> jogosModel) {
+        return jogosModel.stream()
+                .map(this::modelToEntity)
+                .toList();
+    }
 
-    // public List<Jogo> listModelToEntity(List<JogoModel> jogosModel) {
-    //     return jogosModel.stream()
-    //             .map(this::modelToEntity)
-    //             .toList();
-    // }
+    public JogoModel dtoToModel(JogoDTO jogoDTO) {
+        if (jogoDTO instanceof JogoEletronicoDTO) {
+            return new JogoEletronicoModel(
+                    jogoDTO.getCodigo(),
+                    jogoDTO.getNome(),
+                    jogoDTO.getValorBase(),
+                    EnumTipoEletronico.fromString(((JogoEletronicoDTO) jogoDTO).getTipoEletronico()),
+                    ((JogoEletronicoDTO) jogoDTO).getPlataforma());
+        }
+        if (jogoDTO instanceof JogoMesaDTO) {
+            return new JogoMesaModel(
+                    jogoDTO.getCodigo(),
+                    jogoDTO.getNome(),
+                    jogoDTO.getValorBase(),
+                    EnumTipoMesa.fromString(((JogoMesaDTO) jogoDTO).getTipoMesa()),
+                    ((JogoMesaDTO) jogoDTO).getNumeroPecas());
+        }
+        return null;
+    }
 
+    public List<JogoModel> listDTOToModel(List<JogoDTO> jogosDTO) {
+        return jogosDTO.stream()
+                .map(this::dtoToModel)
+                .toList();
+    }
 }

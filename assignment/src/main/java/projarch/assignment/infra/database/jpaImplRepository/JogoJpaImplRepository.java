@@ -23,4 +23,9 @@ public class JogoJpaImplRepository implements IJogoRepository {
     public List<JogoModel> getAllJogos() {
         return jogosMapper.listEntityToModel(repository.findAll());
     }
+
+    @Override
+    public boolean salvaJogo(JogoModel jogo) {
+        return repository.save(jogosMapper.modelToEntity(jogo)) != null;
+    }
 }

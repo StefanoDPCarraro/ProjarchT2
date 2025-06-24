@@ -19,4 +19,12 @@ public enum EnumTipoMesa {
         }
         throw new IllegalArgumentException("Código inválido para EnumTipoMesa: " + codigo);
     }
+    public static EnumTipoMesa fromString(String tipo) {
+        for (EnumTipoMesa e : EnumTipoMesa.values()) {
+            if (e.name().equalsIgnoreCase(tipo)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

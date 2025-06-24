@@ -11,4 +11,8 @@ public interface IJogosMapper {
     List<JogoDTO> listModelToDTO(List<JogoModel> jogosModel);
     JogoModel entityToModel(Jogo jogo);
     List<JogoModel> listEntityToModel(List<Jogo> jogos);
+    Jogo modelToEntity(JogoModel jogoModel);
+    List<Jogo> listModelToEntity(List<JogoModel> jogosModel);
+    JogoModel dtoToModel(JogoDTO jogoDTO);
+    List<JogoModel> listDTOToModel(List<JogoDTO> jogosDTO);
 }
