@@ -72,6 +72,46 @@ public class DataLoader implements CommandLineRunner {
         je3.setValorBase(45);
         jogoJpaRepository.save(je3);
 
+        JogoMesa jm3 = new JogoMesa();
+        jm3.setCodigo(9);
+        jm3.setTipo(EnumTipoMesa.TABULEIRO);
+        jm3.setNumeroPecas(32);
+        jm3.setNome("Banco imobiliario");
+        jm3.setValorBase(80.90);
+        jogoJpaRepository.save(jm3);
+
+        JogoEletronico je4 = new JogoEletronico();
+        je4.setCodigo(10);
+        je4.setTipo(EnumTipoEletronico.AVENTURA);
+        je4.setPlataforma("Playstation");
+        je4.setNome("God of War");
+        je4.setValorBase(199.90);
+        jogoJpaRepository.save(je4);
+
+        JogoEletronico je5 = new JogoEletronico();
+        je5.setCodigo(11);
+        je5.setTipo(EnumTipoEletronico.SIMULACAO);
+        je5.setPlataforma("Xbox");
+        je5.setNome("Fifa 2023");
+        je5.setValorBase(299.90);
+        jogoJpaRepository.save(je5);
+
+        JogoMesa jm4 = new JogoMesa();
+        jm4.setCodigo(12);
+        jm4.setTipo(EnumTipoMesa.CARTAS);
+        jm4.setNumeroPecas(52);
+        jm4.setNome("Baralho Francês");
+        jm4.setValorBase(50.70);
+        jogoJpaRepository.save(jm4);
+
+        JogoEletronico je6 = new JogoEletronico();
+        je6.setCodigo(13);
+        je6.setTipo(EnumTipoEletronico.ESTRATEGIA);
+        je6.setPlataforma("Windows");
+        je6.setNome("StarCraft II");
+        je6.setValorBase(45);
+        jogoJpaRepository.save(je6);
+
         System.out.println("Dados de jogos iniciais carregados com sucesso!");
 
         
