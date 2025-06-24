@@ -10,6 +10,7 @@ public class CreateJogoDTO {
     private Integer numeroPecas;
 
     public CreateJogoDTO(int codigo, String nome, double valorBase, String tipo, String plataforma, Integer numeroPecas) {
+        this.codigo = codigo;
         this.nome = nome;
         this.valorBase = valorBase;
         this.tipo = tipo;
@@ -41,4 +42,15 @@ public class CreateJogoDTO {
         return numeroPecas;
     }
 
+    @Override
+    public String toString() {
+        return "CreateJogoDTO{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", valorBase=" + valorBase +
+                ", tipo='" + tipo + '\'' +
+                ", plataforma='" + plataforma + '\'' +
+                ", numeroPecas=" + numeroPecas +
+                '}';
+    }
 }

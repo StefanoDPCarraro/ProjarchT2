@@ -61,6 +61,7 @@ public class CadastroController {
 
     @PostMapping("/cadjogo")
     public ResponseEntity<Boolean> cadastraJogo(@RequestBody CreateJogoDTO createJogoDTO) {
+        System.out.println("Recebendo DTO: " + createJogoDTO);
         try{
             if (cadastraJogoUC.execute(createJogoDTO)) {
                 return ResponseEntity.ok(true);

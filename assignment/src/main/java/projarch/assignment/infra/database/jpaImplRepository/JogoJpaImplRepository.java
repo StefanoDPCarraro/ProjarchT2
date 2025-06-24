@@ -33,22 +33,23 @@ public class JogoJpaImplRepository implements IJogoRepository {
     @Override
     public JogoModel save(JogoModel jogoModel) {
         Jogo jogoEntity = null;
+        System.out.println("Saving jogoModel: " + jogoModel.toString());
         if(jogoModel instanceof JogoEletronicoModel){
-            JogoEletronico jogo = new JogoEletronico();
-            jogo.setCodigo(jogoModel.getCodigo());
-            jogo.setNome(jogoModel.getNome());
-            jogo.setValorBase(jogoModel.getValorBase());
-            jogo.setPlataforma(((JogoEletronicoModel) jogoModel).getPlataforma());
-            jogo.setTipo(((JogoEletronicoModel) jogoModel).getTipoEletronico());
-            jogoEntity = repository.save(jogo);
+            JogoEletronico jogoEl = new JogoEletronico();
+            jogoEl.setCodigo(jogoModel.getCodigo());
+            jogoEl.setNome(jogoModel.getNome());
+            jogoEl.setValorBase(jogoModel.getValorBase());
+            jogoEl.setPlataforma(((JogoEletronicoModel) jogoModel).getPlataforma());
+            jogoEl.setTipo(((JogoEletronicoModel) jogoModel).getTipoEletronico());
+            jogoEntity = repository.save(jogoEl);
         } else if(jogoModel instanceof JogoMesaModel){
-            JogoMesa jogo = new JogoMesa();
-            jogo.setCodigo(jogoModel.getCodigo());
-            jogo.setNome(jogoModel.getNome());
-            jogo.setValorBase(jogoModel.getValorBase());
-            jogo.setTipo(((JogoMesaModel) jogoModel).getTipoMesa());
-            jogo.setNumeroPecas(((JogoMesaModel) jogoModel).getNumeroPecas());
-            jogoEntity = repository.save(jogo);
+            JogoMesa jogoMe = new JogoMesa();
+            jogoMe.setCodigo(jogoModel.getCodigo());
+            jogoMe.setNome(jogoModel.getNome());
+            jogoMe.setValorBase(jogoModel.getValorBase());
+            jogoMe.setTipo(((JogoMesaModel) jogoModel).getTipoMesa());
+            jogoMe.setNumeroPecas(((JogoMesaModel) jogoModel).getNumeroPecas());
+            jogoEntity = repository.save(jogoMe);
         } else{
             return null; // or throw an exception if needed
         }
