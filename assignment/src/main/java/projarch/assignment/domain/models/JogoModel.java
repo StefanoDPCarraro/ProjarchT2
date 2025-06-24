@@ -30,4 +30,13 @@ public abstract class JogoModel {
     }
     
     public abstract double calcularValorAluguel();
+
+    @Override
+    public String toString() {
+        return "JogoModel{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", valorBase=" + valorBase +
+                '}';
+    }
 }

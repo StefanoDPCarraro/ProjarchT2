@@ -3,7 +3,8 @@ package projarch.assignment.application.useCase;
 import org.springframework.stereotype.Component;
 
 import projarch.assignment.adapters.IMapper.IJogosMapper;
-import projarch.assignment.application.dto.response.JogoDTO;
+import projarch.assignment.application.dto.request.CreateJogoDTO;
+import projarch.assignment.application.validator.JogoValidator;
 import projarch.assignment.domain.services.JogosService;
 
 @Component
@@ -15,7 +16,10 @@ public class CadastraJogoUC {
         this.jogosMapper = jogosMapper;
     }
 
-    public boolean execute(JogoDTO jogoDTO) {
-        return jogosService.salvaJogo(jogosMapper.dtoToModel(jogoDTO));
+    public boolean execute(CreateJogoDTO createJogoDTO) {
+        if(JogoValidator.isValid(createJogoDTO) && !jogosService.validaJogo(createJogoDTO.getCodigo())) {
+            return jogosService.salvaJogo(jogosMapper.createToModel(createJogoDTO)) != null;
+        }
+        return false;
     }
 }

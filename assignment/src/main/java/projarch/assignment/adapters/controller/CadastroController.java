@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import projarch.assignment.application.dto.request.CreateAluguelDTO;
 import projarch.assignment.application.dto.request.CreateClienteDTO;
+import projarch.assignment.application.dto.request.CreateJogoDTO;
 import projarch.assignment.application.dto.response.AluguelDTO;
 import projarch.assignment.application.dto.response.ClienteResponseDTO;
 import projarch.assignment.application.dto.response.JogoDTO;
@@ -65,9 +66,24 @@ public class CadastroController {
     }
 
     @PostMapping("/cadjogo")
-    public boolean cadastraJogo(@RequestBody JogoDTO jogoDTO) {
-        return cadastraJogoUC.execute(jogoDTO);
+    public ResponseEntity<Boolean> cadastraJogo(@RequestBody CreateJogoDTO createJogoDTO) {
+        System.out.println("Recebendo DTO: " + createJogoDTO);
+        try{
+            if (cadastraJogoUC.execute(createJogoDTO)) {
+                return ResponseEntity.ok(true);
+            } else {
+                return ResponseEntity.badRequest().body(false);
+            } 
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro de validação: " + e.getMessage());
+            return ResponseEntity.badRequest().body(false);
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar jogo: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(false);
+        }
     }
+    
     
     @GetMapping("/listaclientes")
     public ResponseEntity<List<ClienteResponseDTO>> listaClientes() {

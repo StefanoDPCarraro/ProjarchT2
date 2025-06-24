@@ -33,6 +33,7 @@ public class DataLoader implements CommandLineRunner {
         jogoJpaRepository.deleteAll();
 
         JogoMesa jm1 = new JogoMesa();
+        jm1.setCodigo(1);
         jm1.setTipo(EnumTipoMesa.CARTAS);
         jm1.setNumeroPecas(52);
         jm1.setNome("Baralho");
@@ -40,6 +41,7 @@ public class DataLoader implements CommandLineRunner {
         jogoJpaRepository.save(jm1);
 
         JogoMesa jm2 = new JogoMesa();
+        jm2.setCodigo(2);
         jm2.setTipo(EnumTipoMesa.TABULEIRO);
         jm2.setNumeroPecas(32);
         jm2.setNome("Xadrez");
@@ -47,6 +49,7 @@ public class DataLoader implements CommandLineRunner {
         jogoJpaRepository.save(jm2);
 
         JogoEletronico je1 = new JogoEletronico();
+        je1.setCodigo(3);
         je1.setTipo(EnumTipoEletronico.SIMULACAO);
         je1.setPlataforma("Playstation");
         je1.setNome("The Sims 4");
@@ -54,6 +57,7 @@ public class DataLoader implements CommandLineRunner {
         jogoJpaRepository.save(je1);
 
         JogoEletronico je2 = new JogoEletronico();
+        je2.setCodigo(4);
         je2.setTipo(EnumTipoEletronico.AVENTURA);
         je2.setPlataforma("Xbox");
         je2.setNome("Indiana Jones");
@@ -61,6 +65,7 @@ public class DataLoader implements CommandLineRunner {
         jogoJpaRepository.save(je2);
 
         JogoEletronico je3 = new JogoEletronico();
+        je3.setCodigo(5);
         je3.setTipo(EnumTipoEletronico.ESTRATEGIA);
         je3.setPlataforma("Windows");
         je3.setNome("Civilization V");

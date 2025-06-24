@@ -70,14 +70,27 @@ public class AluguelMapper implements IAlugueisMapper {
         if (domain == null) {
             return null;
         }
-        throw new IllegalArgumentException();
+        return new Aluguel(
+            domain.getId(),
+            domain.getDataInicial(),
+            domain.getPeriodo(),
+            clienteMapper.toEntity(domain.getCliente()),
+            jogoMapper.modelToEntity(domain.getJogo())
+            );
+        
     }
     @Override
     public AluguelModel toDomain(Aluguel entity){
         if (entity == null) {
             return null;
         }
-        throw new IllegalArgumentException();
+        return new AluguelModel(
+                entity.getId(),
+                entity.getPeriodo(),
+                entity.getDataInicial(),
+                clienteMapper.toDomain(entity.getCliente()),
+                jogoMapper.entityToModel(entity.getJogo())
+                );
     }
 
     @Override

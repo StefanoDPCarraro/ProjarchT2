@@ -20,8 +20,8 @@ public class JogosService {
         return jogoRepository.getAllJogos();
     }
 
-    public boolean salvaJogo(JogoModel jogo) {
-        return jogoRepository.salvaJogo(jogo);
+    public JogoModel salvaJogo(JogoModel jogo) {
+        return jogoRepository.save(jogo);
     }
 
     public boolean validaJogo(int id){

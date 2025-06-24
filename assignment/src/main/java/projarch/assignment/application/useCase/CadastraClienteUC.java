@@ -21,7 +21,6 @@ public class CadastraClienteUC {
         if (ClienteValidator.isValid(dto) && !clienteService.existsById(dto.getNumero())) {
             return clienteService.cadastraCliente(clienteMapper.toDomain(dto)) != null;
         }
-        
         return false;
     }
 }

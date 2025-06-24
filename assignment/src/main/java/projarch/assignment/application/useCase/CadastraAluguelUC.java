@@ -18,9 +18,11 @@ public class CadastraAluguelUC {
     private ClienteService clienteService;
     private JogosService jogosService;
 
-    public CadastraAluguelUC(AluguelService aluguelService, IAlugueisMapper alugueisMapper){
+    public CadastraAluguelUC(AluguelService aluguelService, IAlugueisMapper alugueisMapper, ClienteService clienteService, JogosService jogosService){
         this.aluguelService = aluguelService;
         this.alugueisMapper = alugueisMapper;
+        this.clienteService = clienteService;
+        this.jogosService = jogosService;
     }
 
     public boolean execute(CreateAluguelDTO dto){

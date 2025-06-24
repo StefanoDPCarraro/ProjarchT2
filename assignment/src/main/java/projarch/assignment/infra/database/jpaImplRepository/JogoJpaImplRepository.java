@@ -7,8 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import projarch.assignment.adapters.IMapper.IJogosMapper;
 import projarch.assignment.adapters.repository.IJogoRepository;
+import projarch.assignment.domain.models.JogoEletronicoModel;
+import projarch.assignment.domain.models.JogoMesaModel;
 import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;
+import projarch.assignment.infra.database.entity.Jogo;
+import projarch.assignment.infra.database.entity.JogoEletronico;
+import projarch.assignment.infra.database.entity.JogoMesa;
 
 @Repository
 public class JogoJpaImplRepository implements IJogoRepository {
@@ -26,8 +31,29 @@ public class JogoJpaImplRepository implements IJogoRepository {
     }
 
     @Override
-    public boolean salvaJogo(JogoModel jogo) {
-        return repository.save(jogosMapper.modelToEntity(jogo)) != null;
+    public JogoModel save(JogoModel jogoModel) {
+        Jogo jogoEntity = null;
+        System.out.println("Saving jogoModel: " + jogoModel.toString());
+        if(jogoModel instanceof JogoEletronicoModel){
+            JogoEletronico jogoEl = new JogoEletronico();
+            jogoEl.setCodigo(jogoModel.getCodigo());
+            jogoEl.setNome(jogoModel.getNome());
+            jogoEl.setValorBase(jogoModel.getValorBase());
+            jogoEl.setPlataforma(((JogoEletronicoModel) jogoModel).getPlataforma());
+            jogoEl.setTipo(((JogoEletronicoModel) jogoModel).getTipoEletronico());
+            jogoEntity = repository.save(jogoEl);
+        } else if(jogoModel instanceof JogoMesaModel){
+            JogoMesa jogoMe = new JogoMesa();
+            jogoMe.setCodigo(jogoModel.getCodigo());
+            jogoMe.setNome(jogoModel.getNome());
+            jogoMe.setValorBase(jogoModel.getValorBase());
+            jogoMe.setTipo(((JogoMesaModel) jogoModel).getTipoMesa());
+            jogoMe.setNumeroPecas(((JogoMesaModel) jogoModel).getNumeroPecas());
+            jogoEntity = repository.save(jogoMe);
+        } else{
+            return null; // or throw an exception if needed
+        }
+        return jogosMapper.entityToModel(jogoEntity);
     }
 
     @Override

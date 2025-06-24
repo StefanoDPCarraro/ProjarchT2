@@ -30,7 +30,6 @@ public class ClienteJpaImplRepository implements IClienteRepository{
     public Cliente save(Cliente cliente) {
         ClienteEntity entidade = clienteMapper.toEntity(cliente);
         entidade = repository.save(entidade);
-
         return clienteMapper.toDomain(entidade);
     }
 

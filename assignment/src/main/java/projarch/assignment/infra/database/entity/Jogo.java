@@ -13,7 +13,6 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Jogo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
     private String nome;
     private double valorBase;
