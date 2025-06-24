@@ -54,6 +54,11 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope> <!-- 'provided' significa que o Lombok é usado apenas durante o desenvolvimento e compilação, mas não é incluído no JAR final -->
+        </dependency>
 	</dependencies>
 
 	<build>
