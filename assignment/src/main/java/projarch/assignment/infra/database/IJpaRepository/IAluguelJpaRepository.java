@@ -11,4 +11,5 @@ public interface IAluguelJpaRepository extends JpaRepository<Aluguel, Integer> {
     Aluguel save(Aluguel aluguel);
     void deleteAll();
     boolean existsById(Integer id);
+    List<Aluguel> findByCliente_Numero(Integer id);
 }

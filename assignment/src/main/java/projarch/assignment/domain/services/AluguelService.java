@@ -22,4 +22,8 @@ public class AluguelService {
     public boolean validaAluguel(Integer id){
         return aluguelRepository.validaAluguel(id);
     }
+
+    public List<AluguelModel> findByClienteId(Integer id){
+        return aluguelRepository.findByClienteId(id);
+    }
 }

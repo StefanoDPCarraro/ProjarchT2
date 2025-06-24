@@ -26,7 +26,9 @@ public class AluguelMapper implements IAlugueisMapper {
         return new AluguelDTO(
                 aluguelModel.getId(),
                 aluguelModel.getPeriodo(),
-                aluguelModel.getDataInicial()
+                aluguelModel.getDataInicial(),
+                clienteMapper.toResponseDTO(aluguelModel.getCliente()),
+                jogoMapper.modelToDTO(aluguelModel.getJogo())
         );
     }
 

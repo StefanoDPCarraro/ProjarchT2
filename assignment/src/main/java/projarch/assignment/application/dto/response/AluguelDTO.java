@@ -1,19 +1,22 @@
 package projarch.assignment.application.dto.response;
 
 import java.util.Date;
-import java.util.List;
 
 
 public class AluguelDTO{
     private int id;
     private int periodo;
     private Date dataInicial;
+    private ClienteResponseDTO cliente;
+    private JogoDTO jogo;
     
     
-        public AluguelDTO(int id, int periodo, Date dataInicial) {
+        public AluguelDTO(int id, int periodo, Date dataInicial, ClienteResponseDTO cliente, JogoDTO jogo) {
             this.id = id;
             this.periodo = periodo;
             this.dataInicial = dataInicial;
+            this.cliente = cliente;
+            this.jogo = jogo;
             //this.jogos = jogos;
         }
     
@@ -40,12 +43,21 @@ public class AluguelDTO{
         public void setDataInicial(Date dataInicial) {
             this.dataInicial = dataInicial;
         }
-    
-        /*public List<JogoDTO> getJogos() {
-            return jogos;
+
+        public ClienteResponseDTO getCliente() {
+            return cliente;
+        }
+
+        public void setCliente(ClienteResponseDTO cliente) {
+            this.cliente = cliente;
+        }
+
+        public JogoDTO getJogo() {
+            return jogo;
+        }
+
+        public void setJogo(JogoDTO jogo) {
+            this.jogo = jogo;
         }
     
-        public void setJogos(List<JogoDTO> jogos) {
-            this.jogos = jogos;
-        }*/
 }

@@ -6,8 +6,12 @@ import org.springframework.stereotype.Component;
 import projarch.assignment.domain.enums.EnumTipoEletronico;
 import projarch.assignment.domain.enums.EnumTipoMesa;
 import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
+import projarch.assignment.infra.database.IJpaRepository.IClienteJpaRepository;
 import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;
 import projarch.assignment.infra.database.entity.Aluguel;
+import projarch.assignment.infra.database.entity.ClienteEntity;
+import projarch.assignment.infra.database.entity.EmpresarialEntity;
+import projarch.assignment.infra.database.entity.IndividualEntity;
 import projarch.assignment.infra.database.entity.JogoEletronico;
 import projarch.assignment.infra.database.entity.JogoMesa;
 
@@ -15,10 +19,12 @@ import projarch.assignment.infra.database.entity.JogoMesa;
 public class DataLoader implements CommandLineRunner {
     private final IJogoJpaRepository jogoJpaRepository;
     private final IAluguelJpaRepository aluguelJpaRepository;
+    private final IClienteJpaRepository clienteJpaRepository;
 
-    public DataLoader(IJogoJpaRepository jogoRepository, IAluguelJpaRepository aluguelJpaRepository) {
+    public DataLoader(IJogoJpaRepository jogoRepository, IAluguelJpaRepository aluguelJpaRepository, IClienteJpaRepository clienteJpaRepository) {
         this.jogoJpaRepository = jogoRepository;
         this.aluguelJpaRepository = aluguelJpaRepository;
+        this.clienteJpaRepository = clienteJpaRepository;
     }
 
     @Override
@@ -62,21 +68,38 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Dados de jogos iniciais carregados com sucesso!");
 
+        clienteJpaRepository.deleteAll();
+
+        ClienteEntity c1 = new EmpresarialEntity(null, "Empresa Alpha", "Rua A, 100", "Emp Alpha", "12345678000123");
+        ClienteEntity c2 = new EmpresarialEntity(null, "Empresa Beta", "Rua B, 200", "Emp Beta", "23456789000134");
+        ClienteEntity c3 = new EmpresarialEntity(null, "Empresa Gamma", "Rua C, 300", "Emp Gamma", "34567890100145");
+        ClienteEntity c4 = new IndividualEntity(null, "João Silva", "Rua D, 400", "12345678901");
+        ClienteEntity c5 = new IndividualEntity(null, "Maria Oliveira", "Rua E, 500", "98765432100");
+
+        clienteJpaRepository.save(c1);
+        clienteJpaRepository.save(c2);
+        clienteJpaRepository.save(c3);
+        clienteJpaRepository.save(c4);
+        clienteJpaRepository.save(c5);
+
         aluguelJpaRepository.deleteAll();
 
         Aluguel aluguel1 = new Aluguel();
         aluguel1.setDataInicial(null);
         aluguel1.setPeriodo(1);
+        aluguel1.setCliente(c1);
         aluguelJpaRepository.save(aluguel1);
 
         Aluguel aluguel2 = new Aluguel();
         aluguel2.setDataInicial(null);
         aluguel2.setPeriodo(2);
+        aluguel2.setCliente(c3);
         aluguelJpaRepository.save(aluguel2);
 
         Aluguel aluguel3 = new Aluguel();
         aluguel3.setDataInicial(null);
         aluguel3.setPeriodo(3);
+        aluguel3.setCliente(c5);
         aluguelJpaRepository.save(aluguel3);
 
         System.out.println("Dados de ALUGUEIS iniciais carregados com sucesso!");

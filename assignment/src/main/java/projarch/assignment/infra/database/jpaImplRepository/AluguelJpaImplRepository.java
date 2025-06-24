@@ -1,13 +1,14 @@
 package projarch.assignment.infra.database.jpaImplRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
 import projarch.assignment.adapters.IMapper.IAlugueisMapper;
-import projarch.assignment.domain.models.AluguelModel;
 import projarch.assignment.adapters.repository.IAluguelRepository;
+import projarch.assignment.domain.models.AluguelModel;
+import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
 
 
 @Repository
@@ -30,6 +31,13 @@ public class AluguelJpaImplRepository implements IAluguelRepository {
     @Override
     public boolean validaAluguel(Integer id){
         return repository.existsById(id);
+    }
+
+    @Override
+    public List<AluguelModel> findByClienteId(Integer idCliente) {
+        return repository.findByCliente_Numero(idCliente).stream()
+        .map(alugueisMapper::entityToModel)
+        .collect(Collectors.toList());
     }
 }
 
