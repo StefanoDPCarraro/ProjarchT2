@@ -58,6 +58,29 @@ public class AluguelModel {
         this.jogo = jogo;
     }
 
+    public double calculaValorFinalAluguel(){
+        double valorAluguelPorDia = jogo.calcularValorAluguel();
+
+        if (cliente instanceof Individual) {
+            if (periodo < 7) {
+                return valorAluguelPorDia * periodo * 0.90; 
+            } else if (periodo >= 7 && periodo <= 14) {
+                return valorAluguelPorDia * periodo * 0.80; 
+            } else {
+                return valorAluguelPorDia * periodo * 0.75; 
+            }
+        }
+
+        if (cliente instanceof Empresarial) {
+            if (jogo instanceof JogoEletronicoModel) {
+                return valorAluguelPorDia * periodo; 
+            } else if (jogo instanceof JogoMesaModel) {
+                return valorAluguelPorDia * periodo * 0.85; 
+            }
+        }
+        
+        return 0;
+    }
     
 
 }

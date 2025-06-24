@@ -1,6 +1,7 @@
 package projarch.assignment.domain.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class AluguelService {
 
     public boolean validaAluguel(Integer id){
         return aluguelRepository.validaAluguel(id);
+    }
+
+    public Optional<AluguelModel> findById(Integer id){
+        return aluguelRepository.findById(id);
     }
 
     public List<AluguelModel> findByClienteId(Integer id){

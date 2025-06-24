@@ -2,6 +2,7 @@ package projarch.assignment.infra.database.jpaImplRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -45,6 +46,12 @@ public class AluguelJpaImplRepository implements IAluguelRepository {
         return repository.findByJogo_Codigo(idJogo).stream()
         .map(alugueisMapper::entityToModel)
         .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<AluguelModel> findById(Integer id){
+        return repository.findById(id)
+        .map(alugueisMapper::entityToModel);
     }
 }
 
