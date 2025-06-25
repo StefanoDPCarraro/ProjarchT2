@@ -34,4 +34,5 @@ cd assignment
 mvn spring-boot:run
 ```
 
-![Diagrama de classe do projeto do Projeto](Class Diagram Projarch.png)
+![Diagrama de classe do projeto do Projeto](/assets/classDiagram.png)
+![Astah](/assets/projarch.asta)
