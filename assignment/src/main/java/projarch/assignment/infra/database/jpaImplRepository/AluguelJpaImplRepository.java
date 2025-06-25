@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import projarch.assignment.adapters.IMapper.IAlugueisMapper;
 import projarch.assignment.adapters.repository.IAluguelRepository;
 import projarch.assignment.domain.models.AluguelModel;
-import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
 import projarch.assignment.infra.database.IJpaRepository.IClienteJpaRepository;
 import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;

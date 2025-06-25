@@ -106,5 +106,4 @@ public class AluguelMapper implements IAlugueisMapper {
                 jogo
                 );
     }
-
 }
