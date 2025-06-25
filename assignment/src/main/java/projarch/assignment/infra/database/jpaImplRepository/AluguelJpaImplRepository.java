@@ -9,22 +9,25 @@ import org.springframework.stereotype.Repository;
 import projarch.assignment.adapters.IMapper.IAlugueisMapper;
 import projarch.assignment.adapters.repository.IAluguelRepository;
 import projarch.assignment.domain.models.AluguelModel;
-import projarch.assignment.domain.models.Cliente;
+import projarch.assignment.domain.models.JogoModel;
 import projarch.assignment.infra.database.IJpaRepository.IAluguelJpaRepository;
+import projarch.assignment.infra.database.IJpaRepository.IClienteJpaRepository;
+import projarch.assignment.infra.database.IJpaRepository.IJogoJpaRepository;
 import projarch.assignment.infra.database.entity.Aluguel;
-import projarch.assignment.infra.database.entity.ClienteEntity;
 
 
 @Repository
 public class AluguelJpaImplRepository implements IAluguelRepository {
     private IAluguelJpaRepository repository;
     private IAlugueisMapper alugueisMapper;
+    private IClienteJpaRepository clienteRepository;
+    private IJogoJpaRepository jogoRepository;
 
-
-    public AluguelJpaImplRepository(IAluguelJpaRepository repository, IAlugueisMapper alugueisMapper){
+    public AluguelJpaImplRepository(IAluguelJpaRepository repository, IAlugueisMapper alugueisMapper, IClienteJpaRepository clienteRepository, IJogoJpaRepository jogoRepository) {
         this.repository = repository;
         this.alugueisMapper = alugueisMapper;
-
+        this.clienteRepository = clienteRepository;
+        this.jogoRepository = jogoRepository;
     }
 
     @Override
@@ -63,9 +66,15 @@ public class AluguelJpaImplRepository implements IAluguelRepository {
 
     @Override
     public AluguelModel save(AluguelModel aluguel) {
-        Aluguel entidade = alugueisMapper.toEntity(aluguel);
+        Aluguel entidade = new Aluguel();
+        entidade.setDataInicial(aluguel.getDataInicial());
+        entidade.setPeriodo(aluguel.getPeriodo());
+        entidade.setCliente(clienteRepository.findById(aluguel.getCliente().getNumero()).orElse(null));
+        entidade.setJogo(jogoRepository.findById(aluguel.getJogo().getCodigo()).orElse(null));
+        if (entidade.getCliente() == null || entidade.getJogo() == null) {
+            throw new IllegalArgumentException("Cliente ou Jogo não encontrado");
+        }
         entidade = repository.save(entidade);
-
         return alugueisMapper.toDomain(entidade);
     }
 }

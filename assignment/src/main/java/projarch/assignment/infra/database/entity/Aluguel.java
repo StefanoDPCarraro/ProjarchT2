@@ -49,22 +49,27 @@ public class Aluguel {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
-
     public ClienteEntity getCliente() {
         return cliente;
     }
-
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-
     public Jogo getJogo() {
         return jogo;
     }
-
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Aluguel{" +
+                "id=" + id +
+                ", dataInicial=" + dataInicial +
+                ", periodo=" + periodo +
+                ", cliente=" + cliente.toString() +
+                ", jogo=" + jogo.toString() +
+                '}';
+    }
 }

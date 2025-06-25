@@ -22,4 +22,12 @@ public abstract class ClienteEntity {
     private Integer numero;
     private String nome;
     private String endereco;
+    @Override
+    public String toString() {
+        return "ClienteEntity{" +
+                "numero=" + numero +
+                ", nome='" + nome + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
+    }
 }

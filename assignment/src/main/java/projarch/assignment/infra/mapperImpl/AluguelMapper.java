@@ -76,7 +76,7 @@ public class AluguelMapper implements IAlugueisMapper {
             domain.getPeriodo(),
             clienteMapper.toEntity(domain.getCliente()),
             jogoMapper.modelToEntity(domain.getJogo())
-            );
+        );
         
     }
     @Override
